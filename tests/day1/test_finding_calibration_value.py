@@ -29,6 +29,12 @@ SCENARIOS: Iterable[tuple[str, str]] = (
 def test_finding_frist_calibration_digit(tcase, expected):
     assert find_digit(tcase) == expected[0]
 
+@pytest.mark.parametrize(
+    'tcase, expected', SCENARIOS,
+    ids=(s[0] for s in SCENARIOS),
+)
+def test_finding_last_calibration_digit(tcase, expected):
+    assert find_digit(tcase, is_last=True) == expected[1]
 
 @pytest.mark.parametrize(
     'tcase, expected', SCENARIOS,

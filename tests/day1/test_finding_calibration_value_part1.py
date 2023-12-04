@@ -14,6 +14,7 @@ SCENARIOS: Iterable[tuple[str, str]] = (
     ('treb7uchet', '77'),
 )
 
+SCENARIOS_TOTAL_SUM = 142
 
 @pytest.mark.parametrize(
     'tcase, expected', SCENARIOS,
@@ -40,4 +41,4 @@ def test_finding_calibration_values(tcase, expected):
 @pytest.mark.parametrize('scenarios', [SCENARIOS])
 def test_calibration_value_sum(scenarios):
     actual = find_calibration_value_sum((s for s, _ in scenarios))
-    assert actual == 142
+    assert actual == SCENARIOS_TOTAL_SUM

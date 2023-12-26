@@ -1,5 +1,5 @@
-advent2023.egg-info
-__pycache__
+*sample*
 .stamps
 .venv
-*sample*
+__pycache__
+advent2023.egg-info

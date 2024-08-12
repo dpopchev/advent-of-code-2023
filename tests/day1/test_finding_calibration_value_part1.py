@@ -2,10 +2,8 @@ from typing import Iterable
 
 import pytest
 
-from advent2023.day1 import (
-    find_calibration_value,
-    find_calibration_value_sum, find_digit,
-)
+from advent2023.day1 import (find_calibration_value,
+                             find_calibration_value_sum, find_digit)
 
 SCENARIOS: Iterable[tuple[str, str]] = (
     ('1abc2', '12'),
@@ -16,6 +14,7 @@ SCENARIOS: Iterable[tuple[str, str]] = (
 
 SCENARIOS_TOTAL_SUM = 142
 
+
 @pytest.mark.parametrize(
     'tcase, expected', SCENARIOS,
     ids=(s[0] for s in SCENARIOS),
@@ -23,12 +22,14 @@ SCENARIOS_TOTAL_SUM = 142
 def test_finding_frist_calibration_digit(tcase, expected):
     assert find_digit(tcase) == expected[0]
 
+
 @pytest.mark.parametrize(
     'tcase, expected', SCENARIOS,
     ids=(s[0] for s in SCENARIOS),
 )
 def test_finding_last_calibration_digit(tcase, expected):
     assert find_digit(tcase, is_last=True) == expected[1]
+
 
 @pytest.mark.parametrize(
     'tcase, expected', SCENARIOS,

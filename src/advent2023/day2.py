@@ -1,18 +1,35 @@
-from typing import Iterable, Mapping, Optional
-from dataclasses import dataclass
-import re
+import enum
+from collections.abc import Iterable
+from dataclasses import InitVar, dataclass, field
 
-Line = str
+
+class GameOutcome(enum.Enum):
+    POSSIBLE = enum.auto()
+    IMPOSSIBLE = enum.auto()
+
+    def __str__(self) -> str:
+        return self.name.lower()
+
 
 @dataclass
 class Game:
-    id: Optional[int] = None
-    is_possible: Optional[bool] = None
+    red: int
+    green: int
+    blue: int
 
 
-def make_game(line: str, limits: Mapping[str,int]) -> Game:
-    return Game()
+@dataclass
+class GameRecord:
+    id: int
+    games: InitVar[Iterable[Game]]
+    _games: list[Game] = field(init=False, default_factory=list)
+
+    def __post_init__(self, games: Iterable[Game]) -> None:
+        self._games = [g for g in games]
+
+    def append(self, game: Game) -> None:
+        self._games.append(game)
 
 
-def calc_possible_games(games: Iterable[Line], limits: Mapping[str,int]) -> Optional[int]:
-    return None
+def make_game_record(record: str) -> GameRecord:
+    return GameRecord(-10, [Game(-10, -10, -10)])
